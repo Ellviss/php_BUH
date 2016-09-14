@@ -1,6 +1,14 @@
 # php_BUH
 my first php app
-
+########################################################################
+#for setup this script                                                 #
+#create MySQL DB "buh" with tables                                     #
+########################################################################
+#user : id,login,password                                              #
+#note : id,text_,cost_                                                 #
+########################################################################
+#for default connection is localhost with user : root with no password #
+########################################################################
 its a home buh programm , there you can store all your spends 
 
 in planes (TODO)
