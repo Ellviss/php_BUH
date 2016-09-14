@@ -10,14 +10,11 @@
 <body>
 
 
-<?php $connection = mysqli_connect('localhost', 'root', '', 'buh') or die(mysqli_error()); // Соединение с базой данных ?>
-
-
-
 <?php if (isset($_GET['exit'])) { // если вызвали переменную "exit"
 unset($_SESSION['password']); // Чистим сессию пароля
 unset($_SESSION['login']); // Чистим сессию логина
 unset($_SESSION['id']); // Чистим сессию id
+header('Location: index.php');
 } ?>
 
 <?php if (isset($_SESSION['login']) && isset($_SESSION['id'])) // если в сессии загружены логин и id
