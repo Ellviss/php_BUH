@@ -68,6 +68,21 @@ else // Иначе если поля не пустые
 	echo "<div align='center'>Добавление прошло успешно!</div>"; // Сообщаем что все получилось	
 }
 }
+if (isset($_POST['delnote'])) // Отлавливаем нажатие на кнопку отправить 
+{
+if (empty($_POST['id']))  // Условие - если поле  пустое
+{
+echo "<script>alert('Что-то пошло не так');</script>"; // Выводим сообщение об ошибке
+}          
+    else // Иначе если поля не пустые
+{
+	$del_id = $_POST['id']; // Присваеваем переменной значение из поля              
+	$del_query = "DELETE FROM notes WHERE id = '$del_id'"; // Создаем переменную с запросом к базе данных
+	$delresult = mysqli_query($connection, $del_query) or die(mysql_error()); // Отправляем переменную с запросом в базу данных 
+	echo "<div align='center'>Удаление прошло успешно!</div>"; // Сообщаем что все получилось	
+}
+}
+
 function show_all()
 {
 	

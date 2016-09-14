@@ -35,7 +35,13 @@ $db = mysqli_connect('localhost', 'root', '', 'buh')
     echo '<td>' . $id .'</td>';
     echo '<td>'. $text.'</td>';
     echo '<td> '.$cost.' </td>';
-    echo '<td><input type="submit" name="editnote" value="Редактировать"><input type="submit" name="delnote" value="Удалить"></td>';
+    echo '<td>
+    <form action="index.php" method="post">
+    <input type=hidden name="id" value="'.($row['id']).'" >
+    <input type="submit" name="editnote" value="Редактировать">
+    <input type="submit" name="delnote" value="Удалить">
+    </form>	
+    </td>';
     echo '</tr>';
     }
     echo '</table>';
