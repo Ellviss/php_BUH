@@ -13,7 +13,11 @@ session_start(); // Стартуем сессию
 <?php include ('header.php'); ?>
 <hr/>
 <center>Список затрат</center>
-<?php include ('content.php');	?>
+<?php if (isset($_SESSION['login']) && isset($_SESSION['id'])) // если в сессии загружены логин и id
+{
+ include ('content.php');
+ }
+ ?>
 <hr/>
 <?php include ('footer.php'); ?>
 
