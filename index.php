@@ -7,7 +7,6 @@ session_start(); // Стартуем сессию
 <head>
 <meta charset="utf-8">
 <title>My First App MyBuh</title>
-<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php include ('header.php'); ?>
