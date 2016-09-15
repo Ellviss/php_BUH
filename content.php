@@ -14,14 +14,15 @@
 $db = mysqli_connect('localhost', 'root', '', 'buh')
     or die('Error connecting to MySQL server.');
 
-  $query = "SELECT * FROM notes";
+  $query = "SELECT * FROM notes WHERE user='$login'";
   $result = mysqli_query($db, $query)
     or die('Error querying database.');
     
     
 	echo '<table border=1 align=center width=70%>';
     echo '<tr>';
-    echo '<td>№:</td>';
+    //echo '<td>№:</td>';
+    echo '<td>Дата:</td>';
     echo '<td>Описание:</td>';
     echo '<td>Стоимость: </td>';
     echo '<td>Функции: </td>';
@@ -30,8 +31,10 @@ $db = mysqli_connect('localhost', 'root', '', 'buh')
     $id = $row['id'];
     $text = $row['text_'];
     $cost = $row['cost_'];
+    $date = $row['date'];
     echo '<tr>';   
-    echo '<td>' . $id .'</td>';
+    //echo '<td>' . $id .'</td>';
+    echo '<td>' . $date .'</td>';
     echo '<td>'. $text.'</td>';
     echo '<td> '.$cost.' </td>';
     echo '<td>

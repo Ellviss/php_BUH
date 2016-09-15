@@ -63,7 +63,8 @@ else // Иначе если поля не пустые
 {
 	$desc = $_POST['desc']; // Присваеваем переменной значение из поля              
 	$cost = $_POST['cost']; // Присваеваем другой переменной значение из поля 
-	$add_query = "INSERT INTO `notes` (text_, cost_) VALUES ('$desc', '$cost')"; // Создаем переменную с запросом к базе данных
+	$adduser = $_SESSION['login'] ;
+	$add_query = "INSERT INTO `notes` (text_, cost_,user) VALUES ('$desc', '$cost','$adduser')"; // Создаем переменную с запросом к базе данных
 	$addresult = mysqli_query($connection, $add_query) or die(mysql_error()); // Отправляем переменную с запросом в базу данных 
 	echo "<div align='center'>Добавление прошло успешно!</div>"; // Сообщаем что все получилось	
 }
