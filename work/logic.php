@@ -36,6 +36,8 @@ $login = $_POST['login']; // Записываем логин в переменн
 $password = $_POST['password']; // Записываем пароль в переменную           
 $query = mysqli_query($connection, "SELECT `id` FROM `users` WHERE `login` = '$login' AND `password` = '$password'"); // Формируем переменную с запросом к базе данных с проверкой пользователя
 $result = mysqli_fetch_array($query); // Формируем переменную с исполнением запроса к БД 
+
+
 if (empty($result['id'])) // Если запрос к бд не возвразяет id пользователя
 {
 echo '<script>alert("Неверные Логин или Пароль");</script>'; // Значит такой пользователь не существует или не верен пароль
@@ -63,8 +65,9 @@ else // Иначе если поля не пустые
 {
 	$desc = $_POST['desc']; // Присваеваем переменной значение из поля              
 	$cost = $_POST['cost']; // Присваеваем другой переменной значение из поля 
+	$type = $_POST['status'];
 	$adduser = $_SESSION['login'] ;
-	$add_query = "INSERT INTO `notes` (text_, cost_,user) VALUES ('$desc', '$cost','$adduser')"; // Создаем переменную с запросом к базе данных
+	$add_query = "INSERT INTO `notes` (text_, cost_,user,type) VALUES ('$desc', '$cost','$adduser','$type')"; // Создаем переменную с запросом к базе данных
 	$addresult = mysqli_query($connection, $add_query) or die(mysql_error()); // Отправляем переменную с запросом в базу данных 
 	echo "<div align='center'>Добавление прошло успешно!</div>"; // Сообщаем что все получилось	
 }

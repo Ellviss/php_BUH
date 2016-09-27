@@ -38,7 +38,8 @@ if (empty($result['id']))
 {
 $query = "INSERT INTO `users` (login, password) VALUES ('$reglogin', '$regpassword')"; // Создаем переменную с запросом к базе данных на отправку нового юзера
 $result = mysqli_query($connection, $query) or die(mysql_error()); // Отправляем переменную с запросом в базу данных 
-echo "<div align='center'>Регистрация прошла успешно!</div>"; // Сообщаем что все получилось	
+echo "<div align='center'>Регистрация прошла успешно!</div>";
+echo '<div align="center"><a href="index.php">Перейти на главную</a></div>' ; // Переход на главную	
 }
 else 
 {
