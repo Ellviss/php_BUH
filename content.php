@@ -1,8 +1,4 @@
-﻿<html>
-<head>
-<meta charset="utf-8">
-</head>
-<body>
+﻿
 <div align="center"><h2>Добавление записи:</h2>
 <form action="index.php" method="post">
 <input type="radio" name="status" id="earn" value="1"/><label for="earn">Заработано</label>
@@ -13,38 +9,47 @@
 <input type="reset" value="Очистить">
 </form></div>
 <?php
-	$date_today = date("d.m.y");
-$db = mysqli_connect('localhost', 'root', '', 'buh')
-    or die('Error connecting to MySQL server.');
+
+  $date_today = date("d.m.Y");
+  
   $user = $_SESSION['login'] ;
-  $query = "SELECT * FROM notes WHERE user='$user'";
-  $result = mysqli_query($db, $query)
+  $query = "SELECT * FROM notes WHERE user='$user' AND month(date) = month(now()) and year(date) = year(now()) ";
+  $result = mysqli_query(connect(), $query)
     or die('Error querying database.');
- 	$result_spend = mysqli_query($connection, "SELECT SUM(cost_) FROM `notes` WHERE `type` = 0 ");
+ 	$result_spend = mysqli_query(connect(), "SELECT SUM(cost_) FROM `notes` WHERE `type` = 0 AND month(date) = month(now()) and year(date) = year(now()) ");
 	$srow = mysqli_fetch_array($result_spend);
 	$spend = $srow [0]; 
-	$result_earn = mysqli_query($connection, "SELECT SUM(cost_) FROM `notes` WHERE `type` = 1 ");
+	$result_earn = mysqli_query(connect(), "SELECT SUM(cost_) FROM `notes` WHERE `type` = 1 AND month(date) = month(now()) and year(date) = year(now()) ");
 	$erow = mysqli_fetch_array($result_earn);
 	$earn =$erow [0];
     $res = $earn-$spend;   
     
-	echo '<table border=1 align="center" width=70%>';
-    echo '<tr>';
+	echo '
+	<table class="table table-hover table-md" border=1 align="center" width=70%>';
+    echo '<thead><tr>';
     //echo '<td>№:</td>';
-    echo '<td><b>Дата:</b></td>';
-    echo '<td><b>Описание:</b></td>';
-    echo '<td><b>Стоимость:</b> </td>';
-    echo '<td><b>Функции:</b> </td>';
-    echo '</tr>';
+    echo '<th><b>За период: ' . strftime("%B.%Y").'</b></td>';
+    echo '<th><b>Описание:</b></td>';
+    echo '<th><b>Стоимость:</b> </td>';
+    echo '<th><b>Функции:</b> </td>';
+    echo '</tr></thead>';
   while ($row = mysqli_fetch_array($result)){
     $id = $row['id'];
     $text = $row['text_'];
     $cost = $row['cost_'];
     $date = $row['date'];
-        
-    echo '<tr>';   
+    $type = $row['type'];
+    if ($type==1)
+    {
+		$class = "table-success";
+	}
+    else
+    {
+		$class = "table-danger";
+	}    
+    echo '<tr class='. $class .'>';   
     //echo '<td>' . $id .'</td>';
-    echo '<td>' . $date .'</td>';
+    echo '<td >' . $date .'</td>';
     echo '<td>'. $text.'</td>';
     echo '<td> '.$cost.' </td>';
     echo '<td>
